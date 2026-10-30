@@ -45,7 +45,7 @@ router.get('/flat', async (req: Request, res: Response) => {
   }
 });
 
-router.get('/:id', async (req: Request, res: Response) => {
+router.get('/:id', async (req: Request<{ id: string }>, res: Response) => {
   try {
     const categoryId = parseInt(req.params.id);
     const result = await query('SELECT * FROM categories WHERE id = $1', [categoryId]);
@@ -61,7 +61,7 @@ router.get('/:id', async (req: Request, res: Response) => {
   }
 });
 
-router.get('/:id/goods', async (req: Request, res: Response) => {
+router.get('/:id/goods', async (req: Request<{ id: string }>, res: Response) => {
   try {
     const categoryId = parseInt(req.params.id);
     const { page = 1, limit = 20, sort = 'created_at', order = 'DESC' } = req.query;

@@ -8,7 +8,7 @@ export const checkPermission = (requiredPermission: string) => {
         return res.status(401).json({ error: 'Unauthorized' });
       }
 
-      const { query } = await import('../db');
+      const { query } = await import('../db.js');
       const result = await query(
         'SELECT permissions FROM roles WHERE id = $1',
         [req.user.roleId]

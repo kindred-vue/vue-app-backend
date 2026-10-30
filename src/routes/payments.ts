@@ -19,7 +19,7 @@ router.get('/methods', async (req: Request, res: Response) => {
   }
 });
 
-router.get('/methods/:id', async (req: Request, res: Response) => {
+router.get('/methods/:id', async (req: Request<{ id: string }>, res: Response) => {
   try {
     const methodId = parseInt(req.params.id);
     const result = await query('SELECT * FROM payment_methods WHERE id = $1', [methodId]);

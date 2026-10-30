@@ -6,7 +6,7 @@ import { requireAdmin } from '../middleware/permission';
 
 const router = express.Router();
 
-router.get('/goods/:goodsId', async (req: Request, res: Response) => {
+router.get('/goods/:goodsId', async (req: Request<{ goodsId: string }>, res: Response) => {
   try {
     const goodsId = parseInt(req.params.goodsId);
     const { page = 1, limit = 20, rating } = req.query;
@@ -90,7 +90,7 @@ router.get('/user/:userId', authMiddleware, async (req: AuthRequest, res: Respon
   }
 });
 
-router.get('/:id', async (req: Request, res: Response) => {
+router.get('/:id', async (req: Request<{ id: string }>, res: Response) => {
   try {
     const reviewId = parseInt(req.params.id);
 

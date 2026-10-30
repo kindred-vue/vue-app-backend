@@ -194,7 +194,7 @@ router.get('/recommend', async (req: Request, res: Response) => {
   }
 });
 
-router.get('/:id', async (req: Request, res: Response) => {
+router.get('/:id', async (req: Request<{ id: string }>, res: Response) => {
   try {
     const goodsId = parseInt(req.params.id);
     const result = await query('SELECT * FROM goods WHERE id = $1', [goodsId]);
@@ -210,7 +210,7 @@ router.get('/:id', async (req: Request, res: Response) => {
   }
 });
 
-router.get('/batch/:ids', async (req: Request, res: Response) => {
+router.get('/batch/:ids', async (req: Request<{ ids: string }>, res: Response) => {
   try {
     const ids = req.params.ids.split(',').map(id => parseInt(id));
     
